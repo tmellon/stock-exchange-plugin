@@ -1,0 +1,29 @@
+name: StockExchange
+version: 1.0
+main: com.yourname.stockexchange.StockExchangePlugin
+api-version: 1.20
+commands:
+  buyshares:
+    description: Buy shares using your credit after looking at a buy sign
+    usage: /buyshares <amount>
+  sellshares:
+    description: Sell your shares
+    usage: /sellshares <amount>
+  stockprice:
+    description: Check current stock prices
+    usage: /stockprice [symbol]
+  setcredit:
+    description: Set a player's credit (admin only)
+    usage: /setcredit <player> <amount>
+    permission: stockexchange.setcredit
+  portfolio:
+    description: View your current stock portfolio
+    usage: /portfolio
+
+permissions:
+  stockexchange.createsign:
+    description: Allows players to create stock trading signs
+    default: op
+  stockexchange.setcredit:
+    description: Allows setting player credit
+    default: op
