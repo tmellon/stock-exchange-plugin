@@ -1,4 +1,4 @@
-package com.yourname.stockexchange;
+package com.sdf.stockexchange;
 
 public class Stock {
     private final String symbol;

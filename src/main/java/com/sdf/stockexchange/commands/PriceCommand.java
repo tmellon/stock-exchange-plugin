@@ -1,10 +1,15 @@
-package com.yourname.stockexchange;
+package com.sdf.stockexchange.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import com.sdf.stockexchange.Stock;
+import com.sdf.stockexchange.StockExchangePlugin;
+import com.sdf.stockexchange.StockManager;
+import com.sdf.stockexchange.StockSign;
 
 public class PriceCommand implements CommandExecutor {
     private final StockManager stockManager;

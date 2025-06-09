@@ -1,4 +1,4 @@
-package com.yourname.stockexchange;
+package com.sdf.stockexchange.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -10,6 +10,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.sdf.stockexchange.Stock;
+import com.sdf.stockexchange.StockExchangePlugin;
+import com.sdf.stockexchange.StockManager;
+import com.sdf.stockexchange.StockSign;
 
 public class SellSharesCommand implements CommandExecutor {
     private final StockManager stockManager;

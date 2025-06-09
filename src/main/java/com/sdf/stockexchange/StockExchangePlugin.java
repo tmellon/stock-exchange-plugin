@@ -1,7 +1,15 @@
-package com.yourname.stockexchange;
+package com.sdf.stockexchange;
 
+import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
+
+import com.sdf.stockexchange.commands.BuySharesCommand;
+import com.sdf.stockexchange.commands.PortfolioCommand;
+import com.sdf.stockexchange.commands.PriceCommand;
+import com.sdf.stockexchange.commands.SellSharesCommand;
+import com.sdf.stockexchange.commands.SetCreditCommand;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -12,10 +20,12 @@ public class StockExchangePlugin extends JavaPlugin {
     private StockSignListener signListener;
     private final Map<UUID, StockSign> lastViewedBuySign = new HashMap<>();
     private final Map<UUID, StockSign> lastViewedSellSign = new HashMap<>();
-
+    private Map<Location, String> signRegistry;
+    
     @Override
     public void onEnable() {
         getLogger().info("StockExchange plugin enabled!");
+        this.signRegistry = new HashMap<>();
         
         // Initialize stock manager
         stockManager = new StockManager();
@@ -47,11 +57,19 @@ public class StockExchangePlugin extends JavaPlugin {
         getLogger().info("StockExchange plugin disabled.");
     }
 
+    public StockManager getStockManager() {
+        return stockManager;
+    }
+
     public Map<UUID, StockSign> getLastViewedBuySign() {
         return lastViewedBuySign;
     }
 
     public Map<UUID, StockSign> getLastViewedSellSign() {
         return lastViewedSellSign;
+    }
+
+    public Map<Location, String> getSignRegistry() {
+        return signRegistry;
     }
 }

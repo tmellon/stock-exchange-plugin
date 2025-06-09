@@ -1,4 +1,4 @@
-package com.yourname.stockexchange;
+package com.sdf.stockexchange;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

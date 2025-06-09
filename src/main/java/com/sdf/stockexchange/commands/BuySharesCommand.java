@@ -1,4 +1,9 @@
-package com.yourname.stockexchange;
+package com.sdf.stockexchange.commands;
+
+import com.sdf.stockexchange.Stock;
+import com.sdf.stockexchange.StockExchangePlugin;
+import com.sdf.stockexchange.StockManager;
+import com.sdf.stockexchange.StockSign;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -8,11 +13,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-//figure out sign with chest inventory
-//rework into spigot
 
 public class BuySharesCommand implements CommandExecutor {
     private final StockManager stockManager;
@@ -29,11 +33,13 @@ public class BuySharesCommand implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "This command can only be used by players!");
             return true;
         }
+
         Player player = (Player) sender;
         if (args.length != 1) {
             player.sendMessage(ChatColor.RED + "Usage: /buyshares <amount>");
             return true;
         }
+
         int amount;
         try {
             amount = Integer.parseInt(args[0]);
@@ -73,13 +79,15 @@ public class BuySharesCommand implements CommandExecutor {
         ItemStack receipt = new ItemStack(Material.PAPER, 1);
         ItemMeta meta = receipt.getItemMeta();
         meta.setDisplayName(ChatColor.GOLD + "Stock Purchase Receipt");
+
         List<String> lore = new ArrayList<>();
         lore.add(ChatColor.YELLOW + "Stock: " + stockSymbol);
         lore.add(ChatColor.YELLOW + "Shares: " + amount);
         lore.add(ChatColor.YELLOW + "Price per share: " + String.format("%.2f", price));
         lore.add(ChatColor.YELLOW + "Total cost: " + String.format("%.2f", totalCost));
-        lore.add(ChatColor.GRAY + "Date: " + java.time.LocalDateTime.now().withNano(0));
+        lore.add(ChatColor.GRAY + "Date: " + LocalDateTime.now().withNano(0));
         meta.setLore(lore);
+
         receipt.setItemMeta(meta);
         player.getInventory().addItem(receipt);
 
@@ -87,4 +95,4 @@ public class BuySharesCommand implements CommandExecutor {
         player.sendMessage(ChatColor.GRAY + "Remaining credit: $" + String.format("%.2f", stockManager.getPlayerCredit(player)));
         return true;
     }
-} 
+}
